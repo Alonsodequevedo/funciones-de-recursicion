@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void bubbleSort(int num[], int n);
+void printArray(int num[], int n);
+void printOriginalAndSorted(int originalNum[], int sortedNum[], int n);
+
+void printArray(int num[], int n)  
+{
+    int i;
+    for (i = 0; i < n; i++)  
+        printf("%d ", num[i]);
+    printf("\n");
+}
+
+void bubbleSort(int num[], int n) 
+{
+    int i, j, temp;
+    for (i = 0; i < n - 1; i++) 
+    {
+        for (j = 0; j < n - i - 1; j++) 
+        {
+            if (num[j] > num[j+1])
+            {
+                temp = num[j];
+                num[j] = num[j+1];
+                num[j+1] = temp;
+            }
+        }
+    }
+}
+
+void printOriginalAndSorted(int originalNum[], int sortedNum[], int n)
+{
+    printf("Numeros originales: ");
+    printArray(originalNum, n);
+    printf("Numeros ordenados: ");
+    printArray(sortedNum, n);
+}
+
+int main()
+{
+    int n, i;
+
+    printf("Numero de elementos para ordenar: ");
+    scanf("%d", &n);
+
+    int num[n];
+    int originalNum[n];
+
+    srand(time(NULL));
+
+    for (i = 0; i < n; i++)
+    {
+        originalNum[i] = num[i] = rand() % 100 + 1;
+    }
+
+    bubbleSort(num, n);
+
+    printf("Numeros originales y ordenados:\n");
+    printOriginalAndSorted(originalNum, num, n);
+
+    return 0;
+}
